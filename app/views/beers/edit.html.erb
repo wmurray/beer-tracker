@@ -1,9 +1,3 @@
 <h1>Editing <%= @beer.name %></h1>
 
-<%= simple_form_for @beer do |f| %>
-  <%= f.input :name %>
-  <%= f.input :company %>
-  <%= f.input :count %>
-
-  <%= f.submit "Save Beer" %>
-<% end %>
+<%= render "form", beer: @beer %>
