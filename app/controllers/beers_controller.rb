@@ -4,7 +4,6 @@ class BeersController < ApplicationController
   end
 
   def create
-    beer_params = params.require(:beer).permit(:name, :company, :count)
     @beer = Beer.create(beer_params)
 
     flash[:notice] = "#{@beer.name} added to your beer inventory"
@@ -22,10 +21,15 @@ class BeersController < ApplicationController
   def update
     @beer = Beer.find(params[:id])
 
-    beer_params = params.require(:beer).permit(:name, :company, :count)
     @beer.update(beer_params)
 
     flash[:notice] = "#{@beer.name} updated!"
     redirect_to beers_path
+  end
+
+  private
+
+  def beer_params
+    params.require(:beer).permit(:name, :company, :count)
   end
 end
