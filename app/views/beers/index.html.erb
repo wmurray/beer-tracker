@@ -1,1 +1,21 @@
 <h1>My Beers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name:</th>
+      <th>Company:</th>
+      <th>Count:</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @beers.each do |beer| %>
+      <tr>
+        <td><%= beer.name %></td>
+        <td><%= beer.company %></td>
+        <td><%= beer.count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
