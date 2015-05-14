@@ -14,4 +14,18 @@ class BeersController < ApplicationController
   def index
     @beers = Beer.all
   end
+
+  def edit
+    @beer = Beer.find(params[:id])
+  end
+
+  def update
+    @beer = Beer.find(params[:id])
+
+    beer_params = params.require(:beer).permit(:name, :company, :count)
+    @beer.update(beer_params)
+
+    flash[:notice] = "#{@beer.name} updated!"
+    redirect_to beers_path
+  end
 end

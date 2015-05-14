@@ -24,4 +24,15 @@ RSpec.feature "user manages beer inventory" do
     expect(page).to have_content "Boulevard"
     expect(page).to have_content 20
   end
+
+  scenario "user can edit a beer in their inventory" do
+    create(:beer, name: "Stingo", company: "Boulevard", count: 20)
+    visit beers_path
+
+    click_on "Edit"
+    fill_in "Name", with: "Corona"
+    click_on "Save Beer"
+
+    expect(page).to have_content "Corona updated!"
+  end
 end
